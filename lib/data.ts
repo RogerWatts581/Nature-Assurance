@@ -235,7 +235,7 @@ export const accountV1: AuthorisedAccount = {
   },
 };
 
-export const voiceV1 = "The River Barle account asks us to look carefully before we speak confidently. Signal crayfish are present, and their burrowing provides a credible reason to investigate local bank pressure. But the admitted evidence does not tell us that they caused the reported change in fish. The honest public account is therefore unfinished: recovery has not been demonstrated, causation remains open, and better reach-specific monitoring is the responsible next step.";
+export const voiceV1 = "The River Barle account asks us to look carefully before we speak confidently. Signal crayfish are present, and their burrowing provides a credible reason to investigate local bank pressure. But the admitted evidence does not tell us that they caused the reported change in fish. The honest public account is therefore unfinished: recovery has not been demonstrated, causation remains open, and reach-specific monitoring is among the further evidence capable of reducing uncertainty. Any decision to investigate or act remains with the competent authority.";
 
 export const accountV11: AuthorisedAccount = {
   ...accountV1,
@@ -258,7 +258,7 @@ export const revisionV11: RevisionRecord = {
   toVersion: "1.1",
   createdAt: accountV11.createdAt,
   newEvidenceId: updateEvidence.id,
-  changed: ["Confidence in local bank contribution increased", "Monitoring and management recommendation narrowed to the exact reach"],
+  changed: ["Confidence in local bank contribution increased", "Further evidence capable of reducing uncertainty narrowed to the exact reach"],
   unchanged: ["Fish-decline causation remains unresolved", "Original refused wording remains refused", "Permitted use remains public education only"],
   priorAccountPreserved: true,
 };
