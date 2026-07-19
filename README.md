@@ -2,11 +2,15 @@
 
 **A constitutionally governed route from contested ecological evidence to a human-authorised conclusion.**
 
+> **Nature Assurance exists to ensure that evidence, communication and authority remain constitutionally distinct.**
+
+The governing baseline is [Nature Assurance Constitution — Version 1.0](./CONSTITUTION.md), frozen for Build Week on 19 July 2026.
+
 Nature Assurance is an OpenAI Build Week demonstrator built around one contested River Barle claim:
 
 > Signal crayfish caused the reported decline in fish in the River Barle.
 
-The product does not optimise for producing a fluent answer. It moves the claim through a governed constitutional transaction in which evidence is admitted, propositions are separated, causal overreach is challenged, unsafe wording is stopped, a human makes a purpose-limited decision, and later evidence creates revision without erasure.
+The product does not optimise for producing a fluent answer. It moves the claim through a governed constitutional transaction in which submitted material is admitted by an identified human actor, propositions are separated, causal overreach is challenged, unsafe wording is stopped, a human authorises a narrower account for a limited communicative purpose, and later evidence creates revision without erasure. Monitoring, management, policy and regulation remain with the competent external authority.
 
 ## The Build Contract
 
@@ -26,6 +30,7 @@ The product does not optimise for producing a fluent answer. It moves the claim 
 ### Required behaviour
 
 - Every transition is visible
+- Every material attempted or completed transition is auditable
 - Every conclusion is traceable
 - Every refusal is explained
 - Every approval is recorded
@@ -43,13 +48,14 @@ The product does not optimise for producing a fluent answer. It moves the claim 
 
 ## Constitutional safeguards implemented in code
 
-- Uploading is not admission. Every evidence item requires an admission actor, time, reason, scope and limitation.
+- Submission is not admission. AI may classify or recommend material, but an identified admission actor must make and record the governed admission decision, including its purpose, scope and limitations.
 - GPT‑5.6 produces a preliminary assessment, not an authorised conclusion.
 - Challenge Review may object, trigger a stop and recommend a route. It cannot approve or silently alter the preserved assessment.
 - The original causal wording cannot be authorised unchanged.
-- Human approval requires an identifiable reviewer, role, permitted use, consequence level and review trigger.
+- Human claim-use authorisation requires an identifiable reviewer, role, permitted use, consequence level and review trigger. It authorises communication—not ecological truth or substantive public action.
 - The Voice receives a narrow Authorisation Packet rather than unrestricted evidence or allegations.
 - New evidence creates a linked account version and leaves the earlier account intact.
+- Every material admission, assessment, challenge, refusal, authorisation, communication and revision leaves an audit event.
 
 ## GPT‑5.6 integration
 
@@ -80,7 +86,7 @@ The test suite encodes the seven Build Week acceptance tests. All seven must pas
 
 The six evidential roles and claim map were prepared before Build Week and recorded separately as pre-existing conceptual work. Exact source selection and all production implementation began during the Build Week submission period.
 
-The demonstrator uses linked public-authority and agency materials, plus clearly labelled demonstrator records. It does not determine ecological truth, establish legal liability, provide professional scientific or legal advice, or replace accountable decision-makers. The later professional-survey item is explicitly a demonstrator update scenario until an underlying report is supplied and verified.
+The demonstrator uses linked public-authority and agency materials, plus clearly labelled demonstrator records. An Authorised Account is a governed, purpose-limited communication; it is not automatically an official institutional finding. The demonstrator does not determine ecological truth, establish legal liability, provide professional scientific or legal advice, exercise substantive public authority or replace accountable decision-makers. The later professional-survey item is explicitly a demonstrator update scenario until an underlying report is supplied and verified.
 
 ## Build Week chronology
 
