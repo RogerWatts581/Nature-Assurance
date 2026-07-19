@@ -2,6 +2,8 @@
 
 Frozen for implementation on 15 July 2026.
 
+The constitutional baseline was formally frozen on 19 July 2026 in [`CONSTITUTION.md`](./CONSTITUTION.md). This Build Contract implements that baseline; it does not amend it.
+
 ## Implementation rules
 
 1. No new constitutional concepts during implementation. Classify any problem first as an implementation defect, then a specification defect, and only finally a constitutional defect.
