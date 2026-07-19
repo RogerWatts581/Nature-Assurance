@@ -23,7 +23,7 @@ const steps = [
   ["02", "Evidence record", "Admission & provenance"],
   ["03", "Claim decomposition", "Proposition-level routing"],
   ["04", "Assess & challenge", "Separate passes"],
-  ["05", "Stop & decide", "Human authority"],
+  ["05", "Stop & authorise", "Claim-use decision"],
   ["06", "Authorised account", "Controlled Voice"],
   ["07", "Revision history", "Change without erasure"],
 ] as const;
@@ -126,6 +126,14 @@ export default function Home() {
     addAudit("authorised", accountV1.id, `Narrower conclusion approved for ${decision.permittedUse.toLowerCase()}`, decision.reviewer);
   };
 
+  const recordRevision = () => {
+    setRevised(true);
+    addAudit("admitted", updateEvidence.id, "Later demonstrator material admitted for the exact reach and limited educational use", "Roger Watts");
+    addAudit("reassessed", fallbackAssessment.id, "Local bank-contribution conclusion reassessed; fish-decline causation remains unresolved");
+    addAudit("challenged", challengeReview.id, "Challenge preserved the prohibition on fish-decline causation");
+    addAudit("authorised", revisionV11.id, "Linked account v1.1 authorised for public education; v1.0 preserved", "Roger Watts");
+  };
+
   const renderScreen = () => {
     if (step === 0) {
       return (
@@ -215,7 +223,7 @@ export default function Home() {
     if (step === 4) {
       return (
         <>
-          <SectionHeading eyebrow="Stop condition & human authority · 05" title="Publication stopped" intro="The system cannot authorise the original allegation. An identifiable person must refuse, revise, refer or hold—and record the purpose and consequences of that choice." />
+          <SectionHeading eyebrow="Stop condition & claim-use authorisation · 05" title="Publication stopped" intro="The reviewer does not decide what should happen to the River Barle. An identifiable person decides what may responsibly be communicated, for which purpose and with what limitations." />
           <div className="refusal-banner"><div className="stop-icon">!</div><div><span>Original wording · refused for public use</span><blockquote>“{initialClaim.wording}”</blockquote><p>Reason: plausible mechanism, but local material contribution and fish-decline causation are not established.</p></div></div>
           <div className="decision-layout">
             <div className="decision-options"><button>Refuse</button><button className="selected">Revise & approve</button><button>Refer for specialist review</button><button>Hold pending evidence</button></div>
@@ -223,7 +231,7 @@ export default function Home() {
               <label>Approved wording<textarea value={decision.approvedWording} onChange={(event) => setDecision({ ...decision, approvedWording: event.target.value })} /></label>
               <div className="two-col"><label>Reviewer<input value={decision.reviewer} onChange={(event) => setDecision({ ...decision, reviewer: event.target.value })} /></label><label>Role<input value={decision.role} onChange={(event) => setDecision({ ...decision, role: event.target.value })} /></label></div>
               <div className="two-col"><label>Permitted use<select value={decision.permittedUse} onChange={(event) => setDecision({ ...decision, permittedUse: event.target.value })}><option>Public education only</option><option>Internal exploration only</option><option>Refer for professional scientific review</option></select></label><label>Review trigger<input value={decision.reviewTrigger} onChange={(event) => setDecision({ ...decision, reviewTrigger: event.target.value })} /></label></div>
-              <button className="primary" onClick={recordDecision} disabled={decisionRecorded}>{decisionRecorded ? "Decision recorded ✓" : "Record refusal & purpose-limited approval"}</button>
+              <button className="primary" onClick={recordDecision} disabled={decisionRecorded}>{decisionRecorded ? "Authorisation recorded ✓" : "Record refusal & claim-use authorisation"}</button>
             </div>
           </div>
           {decisionRecorded && <button className="primary next-action" onClick={() => completeAndMove(4)}>Create Authorised Account <span>→</span></button>}
@@ -234,7 +242,7 @@ export default function Home() {
     if (step === 5) {
       return (
         <>
-          <SectionHeading eyebrow="Authorised account · 06" title="A narrower conclusion now has authority" intro="The rejected wording remains visible. The Voice receives only a purpose-limited Authorisation Packet—not the unrestricted allegation or evidence archive." />
+          <SectionHeading eyebrow="Authorised account · 06" title="A narrower account is authorised for limited communication" intro="This is a governed communication, not automatically an official ecological finding. The Voice receives only a purpose-limited Authorisation Packet—not the unrestricted allegation or evidence archive." />
           <div className="account-header"><div><span>River Barle Ecological Account</span><h2>Version {accountV1.version}</h2></div><StatusPill status="amber">Authorised · limited use</StatusPill></div>
           <div className="wording-contrast"><div className="rejected"><span>Submitted claim</span><p>{accountV1.submittedClaim}</p><strong>{accountV1.submittedClaimDecision}</strong></div><div className="approved"><span>Authorised conclusion</span><p>{accountV1.authorisedConclusion}</p><strong>{accountV1.permittedUse}</strong></div></div>
           <div className="account-columns">
@@ -245,7 +253,7 @@ export default function Home() {
             <div className="packet"><span>Authorisation Packet sent to Voice</span><h3>Only five fields cross the boundary</h3><ul><li>Authorised conclusion</li><li>Approved uncertainties</li><li>Prohibited claims</li><li>Permitted use</li><li>Account version</li></ul></div>
             <div className="voice"><span>Controlled interpretation</span><h3>Voice of Nature</h3>{voiceReleased ? <p>“{voiceV1}”</p> : <button className="secondary" onClick={() => { setVoiceReleased(true); addAudit("released", "VOICE-001", "Voice generated from Authorisation Packet v1.0 only"); }}>Release controlled Voice</button>}</div>
           </div>
-          {voiceReleased && <button className="primary" onClick={() => completeAndMove(5)}>Admit new evidence <span>→</span></button>}
+          {voiceReleased && <button className="primary" onClick={() => completeAndMove(5)}>Open governed revision <span>→</span></button>}
         </>
       );
     }
@@ -254,7 +262,7 @@ export default function Home() {
       <>
         <SectionHeading eyebrow="Revision & audit · 07" title="History is preserved; authority is renewed" intro="New material cannot edit an authorised conclusion directly. It enters as candidate evidence and passes again through admission, assurance and human authority." />
         {!revised ? (
-          <div className="update-card"><div className="update-number">+1</div><div><span>Candidate evidence · {updateEvidence.id}</span><h2>{updateEvidence.title}</h2><p>{updateEvidence.summary}</p><div className="support-limit"><span><b>May support</b>{updateEvidence.supports}</span><span><b>Must not support</b>{updateEvidence.doesNotSupport}</span></div></div><button className="primary" onClick={() => { setRevised(true); addAudit("revised", revisionV11.id, "New evidence created linked account v1.1; v1.0 preserved", "Roger Watts"); }}>Admit & create revision</button></div>
+          <div className="update-card"><div className="update-number">+1</div><div><span>Candidate evidence · {updateEvidence.id}</span><h2>{updateEvidence.title}</h2><p>{updateEvidence.summary}</p><div className="support-limit"><span><b>May support</b>{updateEvidence.supports}</span><span><b>Must not support</b>{updateEvidence.doesNotSupport}</span></div></div><button className="primary" onClick={recordRevision}>Run admission, reassessment, challenge & authorisation</button></div>
         ) : (
           <>
             <div className="version-flow"><div className="version-card old"><span>Preserved</span><h2>Account v{accountV1.version}</h2><p>{accountV1.authorisedConclusion}</p></div><div className="version-arrow">→<small>{updateEvidence.id}</small></div><div className="version-card current"><span>Current</span><h2>Account v{accountV11.version}</h2><p>{accountV11.authorisedConclusion}</p></div></div>
@@ -272,7 +280,7 @@ export default function Home() {
       <aside className="sidebar">
         <div className="brand"><div className="brand-mark">NA</div><div><strong>Nature Assurance</strong><span>River Barle demonstrator</span></div></div>
         <nav>{steps.map(([number, label, note], index) => <button key={number} className={`${step === index ? "active" : ""} ${completed.includes(index) ? "complete" : ""}`} onClick={() => (index <= Math.max(step, ...completed) ? setStep(index) : null)}><span className="step-number">{completed.includes(index) ? "✓" : number}</span><span><strong>{label}</strong><small>{note}</small></span></button>)}</nav>
-        <div className="sidebar-rule"><span>Governing proposition</span><p>Capability shall not enlarge authority by default.</p></div>
+        <div className="sidebar-rule"><span>Constitutional baseline · v1.0</span><p>Evidence, communication and authority remain constitutionally distinct.</p></div>
         <div className="build-stamp"><span>Build Week · MVP v1.0</span><strong>One claim. One refusal.</strong></div>
       </aside>
       <main>
